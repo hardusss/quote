@@ -27,10 +27,12 @@ class ModelQuote:
     def insert_quote(self, author: str, quote: str) -> None:
         query = f"""
             INSERT INTO `quote` (author, quote)
-            VALUES ({author, quote})
+            VALUES (%s, %s)
         """
         try:
-            self.cursor.execute(query)
+            self.cursor.execute(query, (author, quote))
             self.cnx.commit()
+            print(f"[+] Author: {author} inserted...")
         except Exception as err:
             print("Error execute", err)
+
