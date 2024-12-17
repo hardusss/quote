@@ -31,7 +31,8 @@ class DbConnection:
         pass
     
     def close(self):
-        """Close connection
+        """
+            Close connection
         """
         if self.cursor:
             self.cursor.close()
